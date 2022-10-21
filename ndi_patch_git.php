@@ -98,12 +98,12 @@ function ffmpeg_alldevices_c()
 {
 	$c=file_get_contents('build\ffmpeg-git\libavdevice\alldevices.c');
 /*
-extern AVOutputFormat ff_decklink_muxer;
--extern AVInputFormat  ff_libndi_newtek_demuxer;
--extern AVOutputFormat ff_libndi_newtek_muxer;
-extern AVInputFormat  ff_dshow_demuxer;
+extern const AVOutputFormat ff_decklink_muxer;
+-extern const AVInputFormat  ff_libndi_newtek_demuxer;
+-extern const AVOutputFormat ff_libndi_newtek_muxer;
+extern const AVInputFormat  ff_dshow_demuxer;
 */
-	$c=str_replace('extern AVInputFormat  ff_dshow_demuxer;', 'extern AVInputFormat  ff_libndi_newtek_demuxer;'."\n".'extern AVOutputFormat ff_libndi_newtek_muxer;'."\n".'extern AVInputFormat  ff_dshow_demuxer;', $c);
+	$c=str_replace('extern const AVInputFormat  ff_dshow_demuxer;', 'extern const AVInputFormat  ff_libndi_newtek_demuxer;'."\n".'extern const AVOutputFormat ff_libndi_newtek_muxer;'."\n".'extern const AVInputFormat  ff_dshow_demuxer;', $c);
 	file_put_contents('build\ffmpeg-git\libavdevice\alldevices.c', $c);
 }
 
